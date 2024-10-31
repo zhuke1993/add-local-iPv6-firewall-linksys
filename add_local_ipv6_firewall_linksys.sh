@@ -76,7 +76,7 @@ current_ipv6_firewall_rules() {
 
 
 # 获取当前的 IPv6 地址
-CURRENT_IP=$(ifconfig | grep 'inet6' | awk '{print $3}' | grep -Ev 'fe80.*|fd00.*|::1' | head -n 1)
+CURRENT_IP=$(ifconfig | grep 'inet6' | awk '{print $3}' | awk -F'/' '{print $1}' | grep -Ev 'fe80.*|fd00.*|::1' | head -n 1)
 #CURRENT_IP=$(ifconfig | grep 'inet6' | awk '{print $2}' | head -n 1)
 echo "得到当前ipv6地址为 $CURRENT_IP"
 
